@@ -4,9 +4,15 @@ html, body, section {
     margin: 0;
 }
 
-#canvas {
+.container {
     width: 100%;
     height: 100%;
 
+}
+
+#canvas {
+    margin: auto; /* maybe not the best way to do this */
+    width: 100%; /* This could cause blurring.... figure out worst case and see how bad it is */
+    height: 100%;
     outline: 1px solid black;
 }
