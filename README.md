@@ -16,5 +16,11 @@ An interactive version of Conway's Game of Life
 - add settings menu
     - (resolution, speed, age, maturity, w/h(?), mouse size)
 
+-refactor code!
+
+### At a later date...
+
 - add rules menu
     - let user trial their own rules - select which feature, opperator, and outcome to apply
+
+- rewrite logic in WebAssembly or use Linear Algebra libraries to imporve performance
