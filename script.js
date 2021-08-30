@@ -1,11 +1,3 @@
-/*
-* - change mouseover to set to age
-*    - if > 1, reduce by one each time - e.g. can't die unless age 1
-*    - if 1 use game logic
-*    - Setting - maturity age?? e.g. doesn't replicate if older than 1
-*/
-
-
 let resolution = 10; 
 let refreshRate = 100;
 let startAge = 10;
