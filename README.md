@@ -6,26 +6,21 @@ An interactive version of Conway's Game of Life
 
 ## What to do next...
 
+- test a mouse size variable
+
 - dynamically resize canvas and grid on window resize
     - if possible we don't want to destroy current cells on resize
 
-[done - but will need to look into possible blur problem]
-- debug draw and canvas so we don't see any lines/outlines / cells are cleaner
-- create container div/section to have canvas in
-    - canvas should be centered
-    - canvas should be width math.floor(window width / resolution)
-        - e.g. cells should be resolution wide - not resolution + remainder
+- test possible blur problem
 
-[do this last - it might not be needed with the living for n gen change]
-- Trial mouse activacting 4 squares
-    - this might be a togglable setting that users can play with later
-- Trial mouse cells living for N generations before being a) affected by GoL logic, or b) being able to die
-    - again, these might be settings later
+- add settings menu
+    - (resolution, speed, age, maturity, w/h(?), mouse size)
 
-- add settings menu with hover expand
-    - start adding settings
-        - resolution
-        - reset
-        - game speed
-        - the options from the trails above
-        - the canvas  width and height?
+-refactor code!
+
+### At a later date...
+
+- add rules menu
+    - let user trial their own rules - select which feature, opperator, and outcome to apply
+
+- rewrite logic in WebAssembly or use Linear Algebra libraries to imporve performance
