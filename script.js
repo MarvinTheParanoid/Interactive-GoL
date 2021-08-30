@@ -6,9 +6,9 @@
 */
 
 
-let resolution = 50; 
-let refreshRate = 500;
-let startAge = 5;
+let resolution = 10; 
+let refreshRate = 100;
+let startAge = 10;
 let maturity = false;
 
 let gridWidth = Math.floor(window.innerWidth / resolution);
@@ -61,7 +61,11 @@ function getNeighbours(x,y){
         for (let j = -1; j < 2; j++){
             let neighbourX = (x + i + gridWidth) % gridWidth;
             let neighbourY = (y + j + gridHeight) % gridHeight;
-            sum += (grid[neighbourX][neighbourY] > 0); //if maturity true, it should not count as a neighbour?
+            if (maturity){
+                sum += (grid[neighbourX][neighbourY] == 1);
+            } else {
+                sum += (grid[neighbourX][neighbourY] > 0);
+            }
         }
     }
     sum -= (grid[x][y] > 0);
@@ -82,7 +86,7 @@ function rules (alive, sum) { //make each rule clear - not combinations
 function setColor (cellAge) {
     if (cellAge == 0) { return 'white'}
     let minL = 30;
-    let maxL = 80; 
+    let maxL = 90; 
     let stepL = (maxL - minL) / startAge;
     let l = maxL - (stepL * cellAge);
     return `hsl(123,73%,${l}%)`
