@@ -22,6 +22,11 @@ setInterval(updateGrid, refreshRate);
 
 document.onmousemove = mouseDraw;
 
+let touch = false;
+canvas.addEventListener('touchstart', () => touch = true);
+canvas.addEventListener('touchend', () => touch = false);
+canvas.addEventListener('touchend', touchDraw, false);
+
 
 
 // main functions
@@ -109,6 +114,14 @@ function setColor (cellAge) {
 //helper functions
 
 function mouseDraw (e) {
+    let x = Math.floor(e.clientX / resolution);
+    let y = Math.floor(e.clientY / resolution);
+    grid[x][y] = startAge;
+    draw()
+}
+
+function touchDraw(e) {
+    if (!touch) {return};
     let x = Math.floor(e.clientX / resolution);
     let y = Math.floor(e.clientY / resolution);
     grid[x][y] = startAge;
