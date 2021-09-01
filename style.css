@@ -16,3 +16,60 @@ html, body, section {
     height: 100%;
     outline: 1px solid black;
 }
+
+.icon {
+    height: 50px;
+    width: 50px;
+    background-color: lightgrey;
+    border-radius: 50%;
+    fill: grey;
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0 0 7px 1px black;
+}
+
+svg {
+    margin: 10px 10px;
+}
+
+#info-icon {
+    height: 30px;
+    width: 30px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    right: 2%;
+    bottom: 2%;
+    transition: all 0.5s ease-in-out;
+}
+
+.button {
+    margin-left: 15px;
+}
+
+.icon:hover {
+    fill: orange;
+    background-color: rgb(233, 233, 233);
+    box-shadow: 0 0 15px 2px orange;
+}
+
+@keyframes spinLeft {
+    0% {transform: rotate(0deg)}
+    50% {transform: rotate(-360deg)}
+    100% {transform: rotate(-360deg)}
+}
+
+.button.settings {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: linear-gradient(to left, rgb(255, 136, 0) ,orange);
+    height: 50px;
+    width:  50px;
+    border-radius: 50px;
+    transition: all 1s ease-in-out;
+}
+
+

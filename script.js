@@ -1,4 +1,4 @@
-let resolution = 10; 
+let resolution = 30; 
 let refreshRate = 100;
 let startAge = 10;
 let maturity = false;
@@ -94,3 +94,28 @@ setInterval(updateGrid, refreshRate);
 
 // does the draw want to be 4 cells but the game work off of two cells?
 // do i want to have a delay before drawing cells undergo game logic?
+
+
+// Buttons
+
+let resetButton = document.querySelector(".reset > .icon");
+resetButton.addEventListener('click', reset);
+function reset () {
+    resetButton.style.animation = "spinLeft 0.2s"
+    grid = Array.from(Array(gridWidth), () => new Array(gridHeight).fill(0));
+    resetButton.addEventListener('animationend', () => this.style.animation = null);
+    settingsToggle();
+}
+
+let settingsButton = document.querySelector(".settings > .icon");
+settingsButton.addEventListener('click', settingsToggle);
+function settingsToggle (){
+    let settings = document.querySelector(".button.settings");
+    let width = settings.style.width;
+    if (width == "50px" || width == ""){
+        settings.style.width = "300px";
+    } else {
+        settings.style.width = "50px";
+    }
+}
+
