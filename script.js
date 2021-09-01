@@ -122,8 +122,8 @@ function mouseDraw (e) {
 
 function touchDraw(e) {
     if (!touch) {return};
-    let x = Math.floor(e.clientX / resolution);
-    let y = Math.floor(e.clientY / resolution);
+    let x = Math.floor(e.touches[0].clientX / resolution);
+    let y = Math.floor(e.touches[0].clientY / resolution);
     grid[x][y] = startAge;
     draw()
 }
