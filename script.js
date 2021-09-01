@@ -1,42 +1,60 @@
+// Global variables
 let resolution = 30; 
-let refreshRate = 100;
+let refreshRate = 200;
 let startAge = 10;
 let maturity = false;
 
-let gridWidth = Math.floor(window.innerWidth / resolution);
-let gridHeight = Math.floor(window.innerHeight / resolution);
 
-let canvas = document.querySelector("#canvas");
-canvas.width  = gridWidth * resolution;
-canvas.height = gridHeight * resolution;
+// Setup
+const canvas = document.querySelector("#canvas");
+const ctx = canvas.getContext('2d');
 
-let ctx = canvas.getContext('2d');
+let gridWidth;
+let gridHeight;
+let grid;
+setup();
 
-let grid = Array.from(Array(gridWidth), () => new Array(gridHeight).fill(0));
+// listners
+
+window.addEventListener('resize', setup);
+
+setInterval(updateGrid, refreshRate);
 
 document.onmousemove = mouseDraw;
+
+
+
+// main functions
+
+function setup() {
+    resizeCanvas();
+    grid = createGrid(); // in future - grid = (grid)? resizeGrid(): createGrid();
+}
+
+function resizeCanvas () {
+    gridWidth = Math.floor(window.innerWidth / resolution);
+    gridHeight = Math.floor(window.innerHeight / resolution);
+
+    canvas.width  = gridWidth * resolution;
+    canvas.height = gridHeight * resolution;
+}
+
+function createGrid () {
+    return Array.from(Array(gridWidth), () => new Array(gridHeight).fill(0));
+}
 
 function draw () {
     for (let i = 0; i < gridWidth; i++) {
         for (let j = 0; j < gridHeight; j++) {
             ctx.fillStyle = setColor(grid[i][j]);
-            //ctx.fillStyle = (grid[i][j])?  'green' : 'white'; // different colors for different ages ?? shades? e.g % change - this should be a function that can be changed later
             ctx.fillRect(i * resolution, j * resolution, resolution, resolution);
         }
     }
 }
 
-
-function mouseDraw (e) {
-    let x = Math.floor(e.clientX / resolution);
-    let y = Math.floor(e.clientY / resolution);
-    grid[x][y] = startAge;
-    draw()
-}
-
 function updateGrid (){
-    let newGrid = Array.from(Array(gridWidth), () => new Array(gridHeight).fill(0)); //new funct - or create from other array? - only update changes??
-    for (let i = 0; i < gridWidth; i++) { //can itteration be a generator - do these exist in JS?
+    let newGrid = createGrid(); 
+    for (let i = 0; i < gridWidth; i++) { 
         for (let j = 0; j < gridHeight; j++) {
             let alive = grid[i][j] ;
             let sum = getNeighbours(i,j);
@@ -64,7 +82,7 @@ function getNeighbours(x,y){
     return sum 
 }
 
-function rules (alive, sum) { //make each rule clear - not combinations
+function rules (alive, sum) { 
 
     if (alive == 0 && sum == 3) { 
         return 1
@@ -82,18 +100,21 @@ function setColor (cellAge) {
     let stepL = (maxL - minL) / startAge;
     let l = maxL - (stepL * cellAge);
     return `hsl(123,73%,${l}%)`
-
-    // if (cellAge > 1) {
-    //     return "orange"
-    // } else if (cellAge == 1) {
-    //     return "green"
-    // } else { return "white"}
 }
 
-setInterval(updateGrid, refreshRate);
 
-// does the draw want to be 4 cells but the game work off of two cells?
-// do i want to have a delay before drawing cells undergo game logic?
+// button functions
+
+
+//helper functions
+
+function mouseDraw (e) {
+    let x = Math.floor(e.clientX / resolution);
+    let y = Math.floor(e.clientY / resolution);
+    grid[x][y] = startAge;
+    draw()
+}
+
 
 
 // Buttons
