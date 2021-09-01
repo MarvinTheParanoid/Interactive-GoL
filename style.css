@@ -52,7 +52,7 @@ svg {
 .icon:hover {
     fill: orange;
     background-color: rgb(233, 233, 233);
-    box-shadow: 0 0 15px 2px orange;
+    box-shadow: 0 0 15px 2px green; //test - change to orange
 }
 
 @keyframes spinLeft {
