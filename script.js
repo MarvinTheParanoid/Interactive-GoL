@@ -21,11 +21,7 @@ window.addEventListener('resize', setup);
 setInterval(updateGrid, refreshRate);
 
 document.onmousemove = mouseDraw;
-
-let touch = false;
-canvas.addEventListener('touchstart', () => touch = true);
-canvas.addEventListener('touchend', () => touch = false);
-canvas.addEventListener('touchend', touchDraw, false);
+window.addEventListener('touchmove', touchDraw);
 
 
 
@@ -121,7 +117,7 @@ function mouseDraw (e) {
 }
 
 function touchDraw(e) {
-    if (!touch) {return};
+    console.log(e);
     let x = Math.floor(e.touches[0].clientX / resolution);
     let y = Math.floor(e.touches[0].clientY / resolution);
     grid[x][y] = startAge;
